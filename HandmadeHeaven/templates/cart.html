@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block content %}
+    <div style="background-color: #ffce77">
+        <div class="container">
+            <h1 class="display-2 mb-0 pb-5 pt-5 text-center text-primary fw-bold text-uppercase">Cart</h1>
+        </div>
+    </div>
+    <div class="bg-warning pt-5">
+        <div class="container">
+            <div class="row">
+                {% for cart_item in cart_items %}
+                    <div class="col-md-6 d-flex align-items-center mb-5">
+                        <div class="card border-0 bg-primary text-white text-center w-100" style="height: 550px">
+                            <div class="d-flex justify-content-center bg-warning mb-2">
+                                <img src="{{ MEDIA_URL }}{{ cart_item.jewerly.image.url }}" alt="" class="img-fluid"
+                                     style="height: 400px; width: 400px">
+                            </div>
+                            <h3><a href="{% url 'jewerly_details' cart_item.jewerly.id %}"
+                                   class="text-white">{{ cart_item.jewerly.name }}</a></h3>
+                            <p>{{ cart_item.quantity }} x ${{ cart_item.jewerly.price }}</p>
+                            <p>Subtotal: {{ cart_item.get_total }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center flex-column align-items-center pb-5">
+                <h1 class="display-4 text-primary fw-bold pb-5 mb-0">
+                    Total: ${{ total_price }}
+                </h1>
+                {% if total_price == 0 %}
+                    <h3>Please add some items to the cart</h3>
+                    <a class="btn btn-primary text-white text-uppercase w-50 text-center pt-3 pb-3 ps-5 pe-5" href="{% url 'store' %}">
+                        Store
+                    </a>
+                {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary text-white text-uppercase w-100 text-center pt-3 pb-3 ps-5 pe-5">
+                        Buy now
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

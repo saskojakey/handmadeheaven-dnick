@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FAQ
+{% endblock %}
+
+{% block content %}
+    <div style="background-color: #ffce77">
+        <div class="container">
+            <h1 class="display-2 mb-0 pb-5 pt-5 text-center text-primary fw-bold text-uppercase">FAQ</h1>
+        </div>
+    </div>
+    <div class="bg-warning pt-5 pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading1">
+                                <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                    Question 1: What materials do you use for your handmade jewelry?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Answer 1: We use high-quality materials such as sterling silver, gold, gemstones, and other carefully sourced components for our handmade jewelry pieces.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading2">
+                                <button class="accordion-button collapsed bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                    Question 2: How can I care for my handmade jewelry?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Answer 2: To ensure the longevity of your jewelry, we recommend avoiding exposure to harsh chemicals, storing it in a jewelry box, and gently cleaning it with a soft cloth.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading3">
+                                <button class="accordion-button collapsed bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                    Question 3: Do you offer custom jewelry designs?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Answer 3: Yes, we offer custom jewelry design services. Contact us with your ideas and preferences, and we'll work with you to create a unique piece.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

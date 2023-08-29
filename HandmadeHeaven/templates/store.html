@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Store
+{% endblock %}
+
+{% block content %}
+    <div style="background-color: #ffce77">
+        <div class="container">
+            <h1 class="display-2 mb-0 pb-5 pt-5 text-center text-primary fw-bold text-uppercase">Store</h1>
+        </div>
+    </div>
+    <div class="bg-warning pt-5">
+        <div class="container pb-5">
+            <div class="d-flex justify-content-center">
+                <div class="bg-primary rounded p-5" style="width: 50%">
+                    <form method="GET">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="search_input" class="form-label">Search</label>
+                            <input type="text" name="search" class="form-control" id="search_input"
+                                   placeholder="Search...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="type_select" class="form-label">Type</label>
+                            <select name="type" class="form-select" id="type_select">
+                                <option value="">All</option>
+                                {% for type_value, type_label in type_choices %}
+                                    <option value="{{ type_value }}">{{ type_label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Exclusive</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exclusive" id="exclusive_yes"
+                                       value="yes">
+                                <label class="form-check-label" for="exclusive_yes">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exclusive" id="exclusive_no"
+                                       value="no">
+                                <label class="form-check-label" for="exclusive_no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Apply Filter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for jewerly in jewerlies %}
+                    <div class="col-md-6 d-flex align-items-center mb-5">
+                        <div class="card border-0 bg-primary text-white text-center w-100" style="height: 550px">
+                            <div class="d-flex justify-content-center bg-warning mb-2">
+                                <img src="{{ MEDIA_URL }}{{ jewerly.image.url }}" alt="" class="img-fluid"
+                                     style="height: 400px; width: 400px">
+                            </div>
+                            <h3><a href="{% url 'jewerly_details' jewerly.id %}"
+                                   class="text-white">{{ jewerly.name }}</a></h3>
+                            <p>{{ jewerly.price }}</p>
+                            <p>{{ jewerly.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div>
+                <h1 class="display-4 text-primary fw-bold pb-5 mb-0">
+                    Are you a jewerly craftsman? Join us and start your selling journey with us!
+                </h1>
+                <hr class="my-4" style="border-top: 20px solid #fff;">
+                <h1 class="display-4 text-primary fw-bold pb-5 mb-0">
+                    Handmade Heaven has grossed over 1 000 000 $ this year. Congratulate us on handmadeheaven@gmail.com and enter the pool for the giveaway for 3% of our profit !
+                </h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}

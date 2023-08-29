@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div style="background-color: #ffce77">
+        <div class="container">
+            <div class="row pt-5 pb-5" style="height: 350px">
+                <div class="col-3">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/pw1-7312-1634503749.jpeg" alt="" width="250"
+                         height="250">
+                </div>
+                <div class="col-6 text-center">
+                    <img src="https://i.ibb.co/b2FB07z/logo.jpg" alt="logo" style="max-height: 250px">
+                </div>
+                <div class="col-3">
+                    <img src="https://media.timeout.com/images/102035297/750/422/image.jpg" alt="" width="250"
+                         height="250">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-warning">
+        <div class="container">
+            <div class="text-center pt-5 pb-5">
+                <h1 class="display-6 text-primary fw-bold">Our top sellers this month</h1>
+            </div>
+            <div class="row">
+                {% for jewerly in jewerlies %}
+                    <div class="col-md-6 d-flex align-items-center mb-5">
+                        <div class="card border-0 bg-primary text-white text-center w-100" style="height: 550px">
+                            <div class="d-flex justify-content-center bg-warning mb-2">
+                                <img src="{{ MEDIA_URL }}{{ jewerly.image.url }}" alt="" class="img-fluid"
+                                     style="height: 400px; width: 400px">
+                            </div>
+                            <h3><a href="{% url 'jewerly_details' jewerly.id %}" class="text-white">{{ jewerly.name }}</a></h3>
+                            <p>{{ jewerly.price }}</p>
+                            <p>{{ jewerly.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div>
+                <h1 class="display-4 text-primary fw-bold pb-5 mb-0">
+                    Are you a jewerly craftsman? Join us and start your selling journey with us!
+                </h1>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

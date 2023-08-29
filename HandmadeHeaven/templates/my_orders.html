@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    My Orders
+{% endblock %}
+
+{% block content %}
+    <div style="background-color: #ffce77">
+        <div class="container">
+            <h1 class="display-2 mb-0 pb-5 pt-5 text-center text-primary fw-bold text-uppercase">My Orders</h1>
+        </div>
+    </div>
+    <div class="bg-warning pt-5 pb-5">
+        <div class="container">
+            {% for order, cart_items in order_cart_items_map.items %}
+                <div class="row justify-content-center bg-primary mb-5  ">
+                    <div class="col-md-6">
+                        <h1 class="text-center text-white">Order info: </h1>
+                        <h4 class="text-center text-white">Order #{{ order.id }}</h4>
+                        <h4 class="text-center text-white">Created at: {{ order.created_at }}</h4>
+                        <h4 class="text-center text-white">Total price: {{ order.total }}</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <h1 class="text-center text-white">Items: </h1>
+                        {% for cart_item in cart_items %}
+                            <h6 class="text-center text-white">Name:  {{ cart_item.jewerly.name }}</h6>
+                            <h6 class="text-center text-white">Quantity: {{ cart_item.quantity }}</h6>
+                            <h6 class="text-center text-white">Subtotal: {{ cart_item.get_total }}</h6>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
